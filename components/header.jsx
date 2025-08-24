@@ -73,7 +73,7 @@ export default async function Header() {
               <Link href="/appointments">
                 <Button
                   variant="outline"
-                  className="hidden md:inline-flex items-center gap-2"
+                  className="hidden md:inline-flex items-center gap-2 cursor-pointer"
                 >
                   <Calendar className="h-4 w-4" />
                   My Appointments

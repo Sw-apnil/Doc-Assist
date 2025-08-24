@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Pricing from "@/components/pricing";
 import { creditBenefits, features, testimonials } from "@/lib/data";
+import CTASection from "@/components/CTASection";
 
 export default function Home() {
   return (
@@ -211,9 +212,9 @@ export default function Home() {
           </div>
         </div>
       </section>
-
+    <CTASection />
       {/* CTA Section with green medical styling */}
-      <section className="py-20">
+      {/* <section className="py-20">
         <div className="container mx-auto px-4">
           <Card className="bg-gradient-to-r from-emerald-900/30 to-emerald-950/20 border-emerald-800/20">
             <CardContent className="p-8 md:p-12 lg:p-16 relative overflow-hidden">
@@ -246,12 +247,12 @@ export default function Home() {
               </div>
 
               {/* Decorative healthcare elements */}
-              <div className="absolute right-0 top-0 w-[300px] h-[300px] bg-emerald-800/10 rounded-full blur-3xl -mr-20 -mt-20"></div>
+              {/* <div className="absolute right-0 top-0 w-[300px] h-[300px] bg-emerald-800/10 rounded-full blur-3xl -mr-20 -mt-20"></div>
               <div className="absolute left-0 bottom-0 w-[200px] h-[200px] bg-emerald-700/10 rounded-full blur-3xl -ml-10 -mb-10"></div>
             </CardContent>
-          </Card>
-        </div>
-      </section>
+          </Card> */}
+        {/* </div>
+      </section> */} 
     </div>
   );
 }

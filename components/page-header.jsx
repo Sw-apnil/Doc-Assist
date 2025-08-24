@@ -29,7 +29,7 @@ export function PageHeader({
           {backLabel}
         </Button>
       </Link>
-      <div className="flex items-end gap-2">
+      <div className="flex items-end gap-2 ">
         {icon && (
           <div className="text-emerald-400">
             {React.cloneElement(icon, {

@@ -2,26 +2,45 @@ import { redirect } from "next/navigation";
 import { getDoctorsBySpecialty } from "@/actions/doctors-listing";
 import { DoctorCard } from "../components/doctor-card";
 import { PageHeader } from "@/components/page-header";
+import { dummyDoctors } from "@/lib/specialities";
 
 export default async function DoctorSpecialtyPage({ params }) {
-  const { specialty } = await params;
+  let { specialty } = params;
 
-  // Redirect to main doctors page if no specialty is provided
   if (!specialty) {
     redirect("/doctors");
   }
 
-  // Fetch doctors by specialty
-  const { doctors, error } = await getDoctorsBySpecialty(specialty);
+  // Decode URL param ("General%20Medicine" → "General Medicine")
+  specialty = decodeURIComponent(specialty);
 
-  if (error) {
-    console.error("Error fetching doctors:", error);
+  let doctors = [];
+
+  try {
+    const { doctors: fetchedDoctors, error } = await getDoctorsBySpecialty(specialty);
+
+    if (error) {
+      console.error("Error fetching doctors:", error);
+    }
+
+    if (fetchedDoctors && fetchedDoctors.length > 0) {
+      doctors = fetchedDoctors;
+    } else {
+      doctors = dummyDoctors.filter(
+        (doc) => doc.specialty.toLowerCase() === specialty.toLowerCase()
+      );
+    }
+  } catch (err) {
+    console.error("Exception fetching doctors:", err);
+    doctors = dummyDoctors.filter(
+      (doc) => doc.specialty.toLowerCase() === specialty.toLowerCase()
+    );
   }
 
   return (
     <div className="space-y-5">
       <PageHeader
-        title={specialty.split("%20").join(" ")}
+        title={specialty}
         backLink="/doctors"
         backLabel="All Specialties"
       />
